@@ -24,6 +24,7 @@ import afterLogin from './utils';
 
 function PrivateRoute({ children }: PrivateRouteProps): JSX.Element {
 	const { pathname } = useLocation();
+	let x;
 
 	const mapRoutes = useMemo(
 		() =>
