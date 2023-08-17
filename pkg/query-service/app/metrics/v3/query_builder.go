@@ -122,7 +122,7 @@ func buildMetricsTimeSeriesFilterQuery(fs *v3.FilterSet, groupTags []v3.Attribut
 	return filterSubQuery, nil
 }
 
-func buildMetricQuery(start, end, step int64, mq *v3.BuilderQuery, tableName string) (string, error) {
+func buildMetricQuery(start, end, step int64, mq *v3.BuilderQuery, _ string) (string, error) {
 
 	metricQueryGroupBy := mq.GroupBy
 
@@ -391,7 +391,7 @@ func reduceQuery(query string, reduceTo v3.ReduceToOperator, aggregateOperator v
 	return query, nil
 }
 
-func PrepareMetricQuery(start, end int64, queryType v3.QueryType, panelType v3.PanelType, mq *v3.BuilderQuery) (string, error) {
+func PrepareMetricQuery(start, end int64, _ v3.QueryType, panelType v3.PanelType, mq *v3.BuilderQuery) (string, error) {
 	query, err := buildMetricQuery(start, end, mq.StepInterval, mq, constants.SIGNOZ_TIMESERIES_TABLENAME)
 	if err != nil {
 		return "", err

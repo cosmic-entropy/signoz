@@ -42,12 +42,12 @@ func (fm *FeatureManager) GetFeatureFlags() (model.FeatureSet, error) {
 	return features, nil
 }
 
-func (fm *FeatureManager) InitFeatures(req model.FeatureSet) error {
+func (fm *FeatureManager) InitFeatures(_ model.FeatureSet) error {
 	zap.S().Error("InitFeatures not implemented in OSS")
 	return nil
 }
 
-func (fm *FeatureManager) UpdateFeatureFlag(req model.Feature) error {
+func (fm *FeatureManager) UpdateFeatureFlag(_ model.Feature) error {
 	zap.S().Error("UpdateFeatureFlag not implemented in OSS")
 	return nil
 }

@@ -4,11 +4,12 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"go.signoz.io/signoz/ee/query-service/model"
 	"net/http"
+
+	"go.signoz.io/signoz/ee/query-service/model"
 )
 
-func (ah *APIHandler) listLicenses(w http.ResponseWriter, r *http.Request) {
+func (ah *APIHandler) listLicenses(w http.ResponseWriter, _ *http.Request) {
 	licenses, apiError := ah.LM().GetLicenses(context.Background())
 	if apiError != nil {
 		RespondError(w, apiError, nil)

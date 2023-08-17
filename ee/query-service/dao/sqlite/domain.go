@@ -4,8 +4,8 @@ import (
 	"context"
 	"database/sql"
 	"encoding/json"
-	"net/url"
 	"fmt"
+	"net/url"
 	"strings"
 	"time"
 
@@ -28,11 +28,11 @@ type StoredDomain struct {
 
 // GetDomainFromSsoResponse uses relay state received from IdP to fetch
 // user domain. The domain is further used to process validity of the response.
-// when sending login request to IdP we send relay state as URL (site url) 
-// with domainId as query parameter.   
+// when sending login request to IdP we send relay state as URL (site url)
+// with domainId as query parameter.
 func (m *modelDao) GetDomainFromSsoResponse(ctx context.Context, relayState *url.URL) (*model.OrgDomain, error) {
 	// derive domain id from relay state now
-	var domainIdStr string 
+	var domainIdStr string
 	for k, v := range relayState.Query() {
 		if k == "domainId" && len(v) > 0 {
 			domainIdStr = strings.Replace(v[0], ":", "-", -1)
@@ -55,7 +55,7 @@ func (m *modelDao) GetDomainFromSsoResponse(ctx context.Context, relayState *url
 }
 
 // GetDomain returns org domain for a given domain id
-func (m *modelDao) GetDomain(ctx context.Context, id uuid.UUID) (*model.OrgDomain, basemodel.BaseApiError) {
+func (m *modelDao) GetDomain(_ context.Context, id uuid.UUID) (*model.OrgDomain, basemodel.BaseApiError) {
 
 	stored := StoredDomain{}
 	err := m.DB().Get(&stored, `SELECT * FROM org_domains WHERE id=$1 LIMIT 1`, id)
@@ -181,7 +181,7 @@ func (m *modelDao) DeleteDomain(ctx context.Context, id uuid.UUID) basemodel.Bas
 	return nil
 }
 
-func (m *modelDao) GetDomainByEmail(ctx context.Context, email string) (*model.OrgDomain, basemodel.BaseApiError) {
+func (m *modelDao) GetDomainByEmail(_ context.Context, email string) (*model.OrgDomain, basemodel.BaseApiError) {
 
 	if email == "" {
 		return nil, model.BadRequest(fmt.Errorf("could not find auth domain, missing fields: email "))

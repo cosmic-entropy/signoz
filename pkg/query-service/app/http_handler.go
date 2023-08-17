@@ -657,7 +657,7 @@ func (aH *APIHandler) QueryRangeMetricsV2(w http.ResponseWriter, r *http.Request
 	aH.Respond(w, resp)
 }
 
-func (aH *APIHandler) listRules(w http.ResponseWriter, r *http.Request) {
+func (aH *APIHandler) listRules(w http.ResponseWriter, _ *http.Request) {
 
 	rules, err := aH.ruleManager.ListRuleStates()
 	if err != nil {
@@ -1020,7 +1020,7 @@ func (aH *APIHandler) deleteChannel(w http.ResponseWriter, r *http.Request) {
 	aH.Respond(w, "notification channel successfully deleted")
 }
 
-func (aH *APIHandler) listChannels(w http.ResponseWriter, r *http.Request) {
+func (aH *APIHandler) listChannels(w http.ResponseWriter, _ *http.Request) {
 	channels, apiErrorObj := aH.reader.GetChannels()
 	if apiErrorObj != nil {
 		RespondError(w, apiErrorObj, nil)
@@ -1134,7 +1134,7 @@ func (aH *APIHandler) createRule(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func (aH *APIHandler) queryRangeMetricsFromClickhouse(w http.ResponseWriter, r *http.Request) {
+func (aH *APIHandler) queryRangeMetricsFromClickhouse(_ http.ResponseWriter, _ *http.Request) {
 
 }
 func (aH *APIHandler) queryRangeMetrics(w http.ResponseWriter, r *http.Request) {
@@ -1612,7 +1612,7 @@ func (aH *APIHandler) getVersion(w http.ResponseWriter, r *http.Request) {
 	aH.WriteJSON(w, r, versionResponse)
 }
 
-func (aH *APIHandler) getFeatureFlags(w http.ResponseWriter, r *http.Request) {
+func (aH *APIHandler) getFeatureFlags(w http.ResponseWriter, _ *http.Request) {
 	featureSet, err := aH.FF().GetFeatureFlags()
 	if err != nil {
 		aH.HandleError(w, err, http.StatusInternalServerError)
@@ -1630,7 +1630,7 @@ func (aH *APIHandler) CheckFeature(f string) bool {
 	return err == nil
 }
 
-func (aH *APIHandler) getConfigs(w http.ResponseWriter, r *http.Request) {
+func (aH *APIHandler) getConfigs(w http.ResponseWriter, _ *http.Request) {
 
 	configs, err := signozio.FetchDynamicConfigs()
 	if err != nil {
@@ -2283,7 +2283,7 @@ func (aH *APIHandler) logAggregate(w http.ResponseWriter, r *http.Request) {
 	aH.WriteJSON(w, r, res)
 }
 
-func (aH *APIHandler) getExplorerQueries(w http.ResponseWriter, r *http.Request) {
+func (aH *APIHandler) getExplorerQueries(w http.ResponseWriter, _ *http.Request) {
 	queries, err := explorer.GetQueries()
 	if err != nil {
 		RespondError(w, &model.ApiError{Typ: model.ErrorInternal, Err: err}, nil)

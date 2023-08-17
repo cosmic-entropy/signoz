@@ -33,7 +33,7 @@ func (mds *ModelDaoSqlite) DeleteInvitation(ctx context.Context, email string) *
 	return nil
 }
 
-func (mds *ModelDaoSqlite) GetInviteFromEmail(ctx context.Context, email string,
+func (mds *ModelDaoSqlite) GetInviteFromEmail(_ context.Context, email string,
 ) (*model.InvitationObject, *model.ApiError) {
 
 	invites := []model.InvitationObject{}
@@ -55,7 +55,7 @@ func (mds *ModelDaoSqlite) GetInviteFromEmail(ctx context.Context, email string,
 	return &invites[0], nil
 }
 
-func (mds *ModelDaoSqlite) GetInviteFromToken(ctx context.Context, token string,
+func (mds *ModelDaoSqlite) GetInviteFromToken(_ context.Context, token string,
 ) (*model.InvitationObject, *model.ApiError) {
 
 	invites := []model.InvitationObject{}
@@ -75,7 +75,7 @@ func (mds *ModelDaoSqlite) GetInviteFromToken(ctx context.Context, token string,
 	return &invites[0], nil
 }
 
-func (mds *ModelDaoSqlite) GetInvites(ctx context.Context,
+func (mds *ModelDaoSqlite) GetInvites(_ context.Context,
 ) ([]model.InvitationObject, *model.ApiError) {
 
 	invites := []model.InvitationObject{}
@@ -101,7 +101,7 @@ func (mds *ModelDaoSqlite) CreateOrg(ctx context.Context,
 	return org, nil
 }
 
-func (mds *ModelDaoSqlite) GetOrg(ctx context.Context,
+func (mds *ModelDaoSqlite) GetOrg(_ context.Context,
 	id string) (*model.Organization, *model.ApiError) {
 
 	orgs := []model.Organization{}
@@ -123,7 +123,7 @@ func (mds *ModelDaoSqlite) GetOrg(ctx context.Context,
 	return &orgs[0], nil
 }
 
-func (mds *ModelDaoSqlite) GetOrgByName(ctx context.Context,
+func (mds *ModelDaoSqlite) GetOrgByName(_ context.Context,
 	name string) (*model.Organization, *model.ApiError) {
 
 	orgs := []model.Organization{}
@@ -144,7 +144,7 @@ func (mds *ModelDaoSqlite) GetOrgByName(ctx context.Context,
 	return &orgs[0], nil
 }
 
-func (mds *ModelDaoSqlite) GetOrgs(ctx context.Context) ([]model.Organization, *model.ApiError) {
+func (mds *ModelDaoSqlite) GetOrgs(_ context.Context) ([]model.Organization, *model.ApiError) {
 	orgs := []model.Organization{}
 	err := mds.db.Select(&orgs, `SELECT * FROM organizations`)
 
@@ -260,7 +260,7 @@ func (mds *ModelDaoSqlite) DeleteUser(ctx context.Context, id string) *model.Api
 	return nil
 }
 
-func (mds *ModelDaoSqlite) GetUser(ctx context.Context,
+func (mds *ModelDaoSqlite) GetUser(_ context.Context,
 	id string) (*model.UserPayload, *model.ApiError) {
 
 	users := []model.UserPayload{}
@@ -301,7 +301,7 @@ func (mds *ModelDaoSqlite) GetUser(ctx context.Context,
 	return &users[0], nil
 }
 
-func (mds *ModelDaoSqlite) GetUserByEmail(ctx context.Context,
+func (mds *ModelDaoSqlite) GetUserByEmail(_ context.Context,
 	email string) (*model.UserPayload, *model.ApiError) {
 
 	if email == "" {
@@ -351,7 +351,7 @@ func (mds *ModelDaoSqlite) GetUsers(ctx context.Context) ([]model.UserPayload, *
 }
 
 // GetUsersWithOpts fetches users and supports additional search options
-func (mds *ModelDaoSqlite) GetUsersWithOpts(ctx context.Context, limit int) ([]model.UserPayload, *model.ApiError) {
+func (mds *ModelDaoSqlite) GetUsersWithOpts(_ context.Context, limit int) ([]model.UserPayload, *model.ApiError) {
 	users := []model.UserPayload{}
 
 	query := `select
@@ -381,7 +381,7 @@ func (mds *ModelDaoSqlite) GetUsersWithOpts(ctx context.Context, limit int) ([]m
 	return users, nil
 }
 
-func (mds *ModelDaoSqlite) GetUsersByOrg(ctx context.Context,
+func (mds *ModelDaoSqlite) GetUsersByOrg(_ context.Context,
 	orgId string) ([]model.UserPayload, *model.ApiError) {
 
 	users := []model.UserPayload{}
@@ -408,7 +408,7 @@ func (mds *ModelDaoSqlite) GetUsersByOrg(ctx context.Context,
 	return users, nil
 }
 
-func (mds *ModelDaoSqlite) GetUsersByGroup(ctx context.Context,
+func (mds *ModelDaoSqlite) GetUsersByGroup(_ context.Context,
 	groupId string) ([]model.UserPayload, *model.ApiError) {
 
 	users := []model.UserPayload{}
@@ -456,7 +456,7 @@ func (mds *ModelDaoSqlite) DeleteGroup(ctx context.Context, id string) *model.Ap
 	return nil
 }
 
-func (mds *ModelDaoSqlite) GetGroup(ctx context.Context,
+func (mds *ModelDaoSqlite) GetGroup(_ context.Context,
 	id string) (*model.Group, *model.ApiError) {
 
 	groups := []model.Group{}
@@ -477,7 +477,7 @@ func (mds *ModelDaoSqlite) GetGroup(ctx context.Context,
 	return &groups[0], nil
 }
 
-func (mds *ModelDaoSqlite) GetGroupByName(ctx context.Context,
+func (mds *ModelDaoSqlite) GetGroupByName(_ context.Context,
 	name string) (*model.Group, *model.ApiError) {
 
 	groups := []model.Group{}
@@ -499,7 +499,7 @@ func (mds *ModelDaoSqlite) GetGroupByName(ctx context.Context,
 	return &groups[0], nil
 }
 
-func (mds *ModelDaoSqlite) GetGroups(ctx context.Context) ([]model.Group, *model.ApiError) {
+func (mds *ModelDaoSqlite) GetGroups(_ context.Context) ([]model.Group, *model.ApiError) {
 
 	groups := []model.Group{}
 	if err := mds.db.Select(&groups, "SELECT * FROM groups"); err != nil {
@@ -528,7 +528,7 @@ func (mds *ModelDaoSqlite) DeleteResetPasswordEntry(ctx context.Context,
 	return nil
 }
 
-func (mds *ModelDaoSqlite) GetResetPasswordEntry(ctx context.Context,
+func (mds *ModelDaoSqlite) GetResetPasswordEntry(_ context.Context,
 	token string) (*model.ResetPasswordEntry, *model.ApiError) {
 
 	entries := []model.ResetPasswordEntry{}

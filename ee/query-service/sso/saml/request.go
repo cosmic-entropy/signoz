@@ -54,7 +54,7 @@ func LoadCertFromPem(certString string) (dsig.X509CertificateStore, error) {
 }
 
 // PrepareRequest prepares authorization URL (Idp Provider URL)
-func PrepareRequest(issuer, acsUrl, audience, entity, idp, certString string) (*saml2.SAMLServiceProvider, error) {
+func PrepareRequest(issuer, acsUrl, _, entity, idp, certString string) (*saml2.SAMLServiceProvider, error) {
 	var certStore dsig.X509CertificateStore
 	if certString == "" {
 		return nil, fmt.Errorf("invalid certificate data")

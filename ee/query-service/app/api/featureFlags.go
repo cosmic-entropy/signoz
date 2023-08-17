@@ -4,7 +4,7 @@ import (
 	"net/http"
 )
 
-func (ah *APIHandler) getFeatureFlags(w http.ResponseWriter, r *http.Request) {
+func (ah *APIHandler) getFeatureFlags(w http.ResponseWriter, _ *http.Request) {
 	featureSet, err := ah.FF().GetFeatureFlags()
 	if err != nil {
 		ah.HandleError(w, err, http.StatusInternalServerError)

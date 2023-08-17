@@ -47,7 +47,7 @@ type Manager struct {
 	terminated chan struct{}
 }
 
-func New(dbType string, db *sqlx.DB, licenseRepo *license.Repo, clickhouseConn clickhouse.Conn) (*Manager, error) {
+func New(_ string, _ *sqlx.DB, licenseRepo *license.Repo, clickhouseConn clickhouse.Conn) (*Manager, error) {
 
 	m := &Manager{
 		// repository:     repo,

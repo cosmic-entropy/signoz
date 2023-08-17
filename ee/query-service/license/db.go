@@ -35,7 +35,7 @@ func (r *Repo) InitDB(engine string) error {
 	}
 }
 
-func (r *Repo) GetLicenses(ctx context.Context) ([]model.License, error) {
+func (r *Repo) GetLicenses(_ context.Context) ([]model.License, error) {
 	licenses := []model.License{}
 
 	query := "SELECT key, activationId, planDetails, validationMessage FROM licenses"
@@ -49,7 +49,7 @@ func (r *Repo) GetLicenses(ctx context.Context) ([]model.License, error) {
 }
 
 // GetActiveLicense fetches the latest active license from DB
-func (r *Repo) GetActiveLicense(ctx context.Context) (*model.License, error) {
+func (r *Repo) GetActiveLicense(_ context.Context) (*model.License, error) {
 	var err error
 	licenses := []model.License{}
 

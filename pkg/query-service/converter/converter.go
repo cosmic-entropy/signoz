@@ -17,7 +17,7 @@ type Converter interface {
 // noneConverter is a converter that does not convert
 type noneConverter struct{}
 
-func (c *noneConverter) Convert(v Value, to Unit) Value {
+func (c *noneConverter) Convert(v Value, _ Unit) Value {
 	return v
 }
 

@@ -155,7 +155,7 @@ func BuildMetricsTimeSeriesFilterQuery(fs *model.FilterSet, groupTags []string, 
 	return filterSubQuery, nil
 }
 
-func BuildMetricQuery(qp *model.QueryRangeParamsV2, mq *model.MetricQuery, tableName string) (string, error) {
+func BuildMetricQuery(qp *model.QueryRangeParamsV2, mq *model.MetricQuery, _ string) (string, error) {
 
 	if qp.CompositeMetricQuery.PanelType == model.QUERY_VALUE && len(mq.GroupingTags) != 0 {
 		return "", fmt.Errorf("reduce operator cannot be applied for the query")
