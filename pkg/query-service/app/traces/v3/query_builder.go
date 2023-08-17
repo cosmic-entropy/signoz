@@ -208,7 +208,7 @@ func handleEmptyValuesInGroupBy(keys map[string]v3.AttributeKey, groupBy []v3.At
 	return "", nil
 }
 
-func buildTracesQuery(start, end, step int64, mq *v3.BuilderQuery, tableName string, keys map[string]v3.AttributeKey) (string, error) {
+func buildTracesQuery(start, end, step int64, mq *v3.BuilderQuery, _ string, keys map[string]v3.AttributeKey) (string, error) {
 
 	filterSubQuery, err := buildTracesFilterQuery(mq.Filters, keys)
 	if err != nil {
@@ -313,7 +313,7 @@ func groupBy(tags ...string) string {
 	return strings.Join(tags, ",")
 }
 
-func groupByAttributeKeyTags(keys map[string]v3.AttributeKey, tags ...v3.AttributeKey) string {
+func groupByAttributeKeyTags(_ map[string]v3.AttributeKey, tags ...v3.AttributeKey) string {
 	groupTags := []string{}
 	for _, tag := range tags {
 		groupTags = append(groupTags, tag.Key)
@@ -369,7 +369,7 @@ func having(items []v3.Having) string {
 	return strings.Join(having, " AND ")
 }
 
-func reduceToQuery(query string, reduceTo v3.ReduceToOperator, aggregateOperator v3.AggregateOperator) (string, error) {
+func reduceToQuery(query string, reduceTo v3.ReduceToOperator, _ v3.AggregateOperator) (string, error) {
 
 	var groupBy string
 	switch reduceTo {
@@ -403,7 +403,7 @@ func addOffsetToQuery(query string, offset uint64) string {
 	return fmt.Sprintf("%s OFFSET %d", query, offset)
 }
 
-func PrepareTracesQuery(start, end int64, queryType v3.QueryType, panelType v3.PanelType, mq *v3.BuilderQuery, keys map[string]v3.AttributeKey) (string, error) {
+func PrepareTracesQuery(start, end int64, _ v3.QueryType, panelType v3.PanelType, mq *v3.BuilderQuery, keys map[string]v3.AttributeKey) (string, error) {
 	query, err := buildTracesQuery(start, end, mq.StepInterval, mq, constants.SIGNOZ_SPAN_INDEX_TABLENAME, keys)
 	if err != nil {
 		return "", err

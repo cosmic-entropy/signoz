@@ -169,7 +169,7 @@ func findMissingTimeRanges(start, end int64, seriesList []*v3.Series, fluxInterv
 
 // findMissingTimeRanges finds the missing time ranges in the cached data
 // and returns them as a list of misses
-func (q *querier) findMissingTimeRanges(start, end, step int64, cachedData []byte) (misses []missInterval) {
+func (q *querier) findMissingTimeRanges(start, end, _ int64, cachedData []byte) (misses []missInterval) {
 	var cachedSeriesList []*v3.Series
 	if err := json.Unmarshal(cachedData, &cachedSeriesList); err != nil {
 		// In case of error, we return the entire range as a miss

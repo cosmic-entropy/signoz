@@ -53,7 +53,7 @@ func notifySubscribers(agentId string, hash string, err error) {
 }
 
 // callers subscribe to this function to listen on config change requests
-func ListenToConfigUpdate(agentId string, hash string, ss OnChangeCallback) {
+func ListenToConfigUpdate(_ string, hash string, ss OnChangeCallback) {
 	coordinator.mutex.Lock()
 	defer coordinator.mutex.Unlock()
 

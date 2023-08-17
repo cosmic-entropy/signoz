@@ -349,7 +349,7 @@ func having(items []v3.Having) string {
 	return strings.Join(having, " AND ")
 }
 
-func reduceQuery(query string, reduceTo v3.ReduceToOperator, aggregateOperator v3.AggregateOperator) (string, error) {
+func reduceQuery(query string, reduceTo v3.ReduceToOperator, _ v3.AggregateOperator) (string, error) {
 	// the timestamp picked is not relevant here since the final value used is show the single
 	// chart with just the query value.
 	switch reduceTo {
@@ -377,7 +377,7 @@ func addOffsetToQuery(query string, offset uint64) string {
 	return fmt.Sprintf("%s OFFSET %d", query, offset)
 }
 
-func PrepareLogsQuery(start, end int64, queryType v3.QueryType, panelType v3.PanelType, mq *v3.BuilderQuery) (string, error) {
+func PrepareLogsQuery(start, end int64, _ v3.QueryType, panelType v3.PanelType, mq *v3.BuilderQuery) (string, error) {
 	query, err := buildLogsQuery(panelType, start, end, mq.StepInterval, mq)
 	if err != nil {
 		return "", err

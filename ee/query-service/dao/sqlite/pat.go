@@ -24,7 +24,7 @@ func (m *modelDao) CreatePAT(ctx context.Context, p *model.PAT) basemodel.BaseAp
 	return nil
 }
 
-func (m *modelDao) ListPATs(ctx context.Context, userID string) ([]model.PAT, basemodel.BaseApiError) {
+func (m *modelDao) ListPATs(_ context.Context, userID string) ([]model.PAT, basemodel.BaseApiError) {
 	pats := []model.PAT{}
 
 	if err := m.DB().Select(&pats, `SELECT * FROM personal_access_tokens WHERE user_id=?;`, userID); err != nil {
@@ -43,7 +43,7 @@ func (m *modelDao) DeletePAT(ctx context.Context, id string) basemodel.BaseApiEr
 	return nil
 }
 
-func (m *modelDao) GetPAT(ctx context.Context, token string) (*model.PAT, basemodel.BaseApiError) {
+func (m *modelDao) GetPAT(_ context.Context, token string) (*model.PAT, basemodel.BaseApiError) {
 	pats := []model.PAT{}
 
 	if err := m.DB().Select(&pats, `SELECT * FROM personal_access_tokens WHERE token=?;`, token); err != nil {
@@ -60,7 +60,7 @@ func (m *modelDao) GetPAT(ctx context.Context, token string) (*model.PAT, basemo
 	return &pats[0], nil
 }
 
-func (m *modelDao) GetPATByID(ctx context.Context, id string) (*model.PAT, basemodel.BaseApiError) {
+func (m *modelDao) GetPATByID(_ context.Context, id string) (*model.PAT, basemodel.BaseApiError) {
 	pats := []model.PAT{}
 
 	if err := m.DB().Select(&pats, `SELECT * FROM personal_access_tokens WHERE id=?;`, id); err != nil {
@@ -77,7 +77,7 @@ func (m *modelDao) GetPATByID(ctx context.Context, id string) (*model.PAT, basem
 	return &pats[0], nil
 }
 
-func (m *modelDao) GetUserByPAT(ctx context.Context, token string) (*basemodel.UserPayload, basemodel.BaseApiError) {
+func (m *modelDao) GetUserByPAT(_ context.Context, token string) (*basemodel.UserPayload, basemodel.BaseApiError) {
 	users := []basemodel.UserPayload{}
 
 	query := `SELECT

@@ -54,11 +54,11 @@ type TemplateExpander struct {
 
 // NewTemplateExpander returns a template expander ready to use.
 func NewTemplateExpander(
-	ctx context.Context,
+	_ context.Context,
 	text string,
 	name string,
 	data interface{},
-	timestamp times.Time,
+	_ times.Time,
 	externalURL *url.URL,
 ) *TemplateExpander {
 	return &TemplateExpander{

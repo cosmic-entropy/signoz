@@ -15,7 +15,7 @@ import (
 
 // inserts or updates ingestion controller processors depending
 // on the signal (metrics or traces)
-func UpsertControlProcessors(ctx context.Context, signal string, processors map[string]interface{}, callback model.OnChangeCallback) (hash string, fnerr error) {
+func UpsertControlProcessors(_ context.Context, signal string, processors map[string]interface{}, callback model.OnChangeCallback) (hash string, fnerr error) {
 	// note: only processors enabled through tracesPipelinePlan will be added
 	// to pipeline. To enable or disable processors from pipeline, call
 	// AddToTracePipeline() or RemoveFromTracesPipeline() prior to calling
@@ -66,7 +66,7 @@ func UpsertControlProcessors(ctx context.Context, signal string, processors map[
 }
 
 // addIngestionControlToAgent adds ingestion contorl rules to agent config
-func addIngestionControlToAgent(agent *model.Agent, signal string, processors map[string]interface{}, withLB bool) (string, error) {
+func addIngestionControlToAgent(agent *model.Agent, signal string, processors map[string]interface{}, _ bool) (string, error) {
 	confHash := ""
 	config := agent.EffectiveConfig
 	c, err := yaml.Parser().Unmarshal([]byte(config))

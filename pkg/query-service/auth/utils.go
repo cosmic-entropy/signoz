@@ -51,6 +51,6 @@ func validateInviteRequest(req *model.InviteRequest) error {
 }
 
 // TODO(Ahsan): Implement check on email semantic.
-func isValidEmail(email string) bool {
+func isValidEmail(_ string) bool {
 	return true
 }

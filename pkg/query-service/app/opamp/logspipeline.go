@@ -17,7 +17,7 @@ import (
 
 var lockLogsPipelineSpec sync.RWMutex
 
-func UpsertLogsParsingProcessor(ctx context.Context, parsingProcessors map[string]interface{}, parsingProcessorsNames []string, callback func(string, string, error)) (string, error) {
+func UpsertLogsParsingProcessor(_ context.Context, parsingProcessors map[string]interface{}, parsingProcessorsNames []string, callback func(string, string, error)) (string, error) {
 	confHash := ""
 	if opAmpServer == nil {
 		return confHash, fmt.Errorf("opamp server is down, unable to push config to agent at this moment")

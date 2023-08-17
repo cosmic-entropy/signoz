@@ -44,7 +44,7 @@ func (c *cache) Store(cacheKey string, data []byte, ttl time.Duration) error {
 }
 
 // Retrieve retrieves the data from the cache
-func (c *cache) Retrieve(cacheKey string, allowExpired bool) ([]byte, status.RetrieveStatus, error) {
+func (c *cache) Retrieve(cacheKey string, _ bool) ([]byte, status.RetrieveStatus, error) {
 	data, err := c.client.Get(context.Background(), cacheKey).Bytes()
 	if err != nil {
 		if err == redis.Nil {

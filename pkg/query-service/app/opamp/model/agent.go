@@ -188,7 +188,7 @@ func (agent *Agent) updateStatusField(newStatus *protobufs.AgentToServer) (agent
 	return agentDescrChanged
 }
 
-func (agent *Agent) updateEffectiveConfig(newStatus *protobufs.AgentToServer, response *protobufs.ServerToAgent) {
+func (agent *Agent) updateEffectiveConfig(newStatus *protobufs.AgentToServer, _ *protobufs.ServerToAgent) {
 	// Update effective config if provided.
 	if newStatus.EffectiveConfig != nil {
 		if newStatus.EffectiveConfig.ConfigMap != nil {
