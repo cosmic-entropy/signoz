@@ -7,6 +7,7 @@ import { PayloadProps, Props } from 'types/api/channels/editPager';
 const editPager = async (
 	props: Props,
 ): Promise<SuccessResponse<PayloadProps> | ErrorResponse> => {
+	// @ts-ignore
 	try {
 		const response = await axios.put(`/channels/${props.id}`, {
 			name: props.name,
@@ -35,6 +36,7 @@ const editPager = async (
 			payload: response.data.data,
 		};
 	} catch (error) {
+		// @ts-ignore
 		return ErrorResponseHandler(error as AxiosError);
 	}
 };
