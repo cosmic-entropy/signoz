@@ -37,6 +37,8 @@ function InputComponent({
 				// eslint-disable-next-line react/jsx-props-no-spreading
 				{...props}
 			/>
+			<React.Fragment>Foo</React.Fragment>
+			<React.Fragment></React.Fragment>
 		</Form.Item>
 	);
 }
